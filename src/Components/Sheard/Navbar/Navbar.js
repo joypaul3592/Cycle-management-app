@@ -19,7 +19,7 @@ const Navbar = () => {
 
     return (
         <Disclosure
-            as="nav" className=" shadow-md sticky top-0 z-40">
+            as="nav" className=" shadow-md sticky top-0 z-40 bg-white">
             {({ open }) => (
                 <>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 bg-white">
