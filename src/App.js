@@ -8,6 +8,7 @@ import ManageProduct from './Components/ManageProduct/ManageProduct';
 import AddProduct from './Components/AddProduct/AddProduct';
 import MyProduct from './Components/MyProduct/MyProduct';
 import Blog from './Components/Blog/Blog';
+import RequireAuth from './Components/UserLogin/RequireAuth/RequireAuth';
 
 function App() {
   return (
@@ -17,9 +18,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login></Login>} />
         <Route path="/signup" element={<SignUp></SignUp>} />
-        <Route path="/manageItem" element={<ManageProduct></ManageProduct>} />
-        <Route path="/addItem" element={<AddProduct></AddProduct>} />
-        <Route path="/myItem" element={<MyProduct></MyProduct>} />
+        <Route path="/manageItem" element={<RequireAuth><ManageProduct></ManageProduct></RequireAuth>} />
+        <Route path="/addItem" element={<RequireAuth><AddProduct></AddProduct></RequireAuth>} />
+        <Route path="/myItem" element={<RequireAuth><MyProduct></MyProduct></RequireAuth>} />
         <Route path="/blog" element={<Blog></Blog>} />
       </Routes>
     </div>

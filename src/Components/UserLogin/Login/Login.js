@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon, FlagIcon, XIcon } from '@heroicons/react/outline'
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
@@ -82,12 +82,18 @@ const Login = () => {
 
 
     // User successfully sign up
+    // if (user) {
+    //     naviget(from, { replace: true });
+    //     // toast.success("Wow Sign Up Successfully!")
+    // }
+
     useEffect(() => {
         if (user) {
-            Navigate('/')
-            toast.success('logIn Successfull')
+            naviget(from, { replace: true });
+            toast.success("Login Successfully!")
         }
     }, [user])
+
 
     // User sign up error
     useEffect(() => {
