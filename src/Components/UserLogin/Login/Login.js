@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { XIcon } from '@heroicons/react/outline'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { EyeIcon, EyeOffIcon, FlagIcon, XIcon } from '@heroicons/react/outline'
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../Firebase/Firebase.init';
 import Loading from '../../Sheard/Loading/Loading';
@@ -25,7 +25,7 @@ const Login = () => {
     // Error
     const [emailError, setEmailError] = useState('');
     const [passError, setPassError] = useState('');
-
+    const [state, setState] = useState(false)
 
 
     // email input value & validation
@@ -56,6 +56,12 @@ const Login = () => {
 
 
 
+
+    const toggleBtn = () => {
+        setState(prevState => !prevState)
+    }
+
+
     // handel Login
 
     const handelLogin = (e) => {
@@ -76,11 +82,12 @@ const Login = () => {
 
 
     // User successfully sign up
-    if (user) {
-        naviget(from, { replace: true });
-        // toast.success("Wow Sign Up Successfully!")
-    }
-
+    useEffect(() => {
+        if (user) {
+            Navigate('/')
+            toast.success('logIn Successfull')
+        }
+    }, [user])
 
     // User sign up error
     useEffect(() => {
@@ -107,7 +114,7 @@ const Login = () => {
 
     }
 
-
+    console.log(user)
     return (
         <div className="login-container">
             <div className='mb-24 mx-5 '>
@@ -126,16 +133,26 @@ const Login = () => {
 
                         <div className="flex flex-col text-left mb-8">
                             <label className=' text-xl  ml-2 mb-2' htmlFor="password">Password</label>
-                            <input onChange={passwordClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="password" name="password" id="password" required />
+                            <div className="relative">
+                                <input onChange={passwordClick} className='w-full py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl ' type={state ? 'text' : 'password'} name="password" id="password" required />
+
+                                <div onClick={toggleBtn} className='w-6 absolute right-4 top-[25%]'>
+                                    {
+                                        state ? <EyeIcon ></EyeIcon> : <EyeOffIcon></EyeOffIcon>
+                                    }
+
+                                </div>
+                            </div>
                         </div>
                         {
                             passError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {passError}</p> : ''
                         }
-                        <div className="btn-container mx-10 mt-10 mb-3">
-                            <button onClick={handelLogin} className='w-1/2 bg-fuchsia-400 shadow-md py-2 text-2xl rounded text-white'>Log In</button>
+                        <div className="btn-container mt-10 mb-3">
+                            <button onClick={handelLogin} className='w-full bg-fuchsia-800 shadow-md py-2 text-2xl rounded text-white mb-8'>Log In</button>
                         </div>
-                        <p className=' font-mono font-medium'>Create New Account? <span onClick={() => naviget('/signup')} className=' text-sky-700 cursor-pointer'>Sign Up</span></p>
-                        <p className=' font-mono font-medium'>Forget Password? <span onClick={resetPassword} className=' text-sky-700 cursor-pointer'>Reset Password</span></p>
+                        <p className=' font-mono font-medium'>Create New Account? <span onClick={() => naviget('/signup')} className=' text-fuchsia-800 cursor-pointer font-mono font-bold text-xl'>Register</span></p>
+
+                        <p className=' font-mono font-medium'>Forget Password? <span onClick={resetPassword} className=' text-fuchsia-800 cursor-pointer font-mono font-bold text-xl'>Reset Password</span></p>
                         <SocialLogin></SocialLogin>
                         {/* <ToastContainer /> */}
                     </div>

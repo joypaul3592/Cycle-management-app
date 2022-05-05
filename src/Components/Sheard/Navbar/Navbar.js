@@ -1,6 +1,7 @@
-import { Disclosure, Menu } from '@headlessui/react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { signOut } from 'firebase/auth';
+import { Fragment, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
@@ -17,9 +18,13 @@ const Navbar = () => {
     const [user] = useAuthState(auth)
 
 
-    // if (user?._id) {
-    //     toast.success('Succesfully LogIn!!')
-    // }
+    useEffect(() => {
+        if (user) {
+            console.log(user?.photoURL);
+        }
+    }, [user])
+
+
 
     return (
         <Disclosure
@@ -39,7 +44,7 @@ const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center lg:justify-between sm:justify-center lg:items-stretch   ">
+                            <div className="flex-1 flex items-center lg:justify-between justify-center lg:items-stretch   ">
                                 <div>
                                     <Link className="flex-shrink-0 flex items-center " to={'/'}>
                                         <img
@@ -77,13 +82,51 @@ const Navbar = () => {
 
                                     </div>
                                 </div>
-                                <div className="hidden  lg:block sm:ml-6 mr-2">
+                                <div className="  lg:static absolute right-0 sm:ml-6 mr-2">
                                     <div className="flex items-center justify-center h-full">
                                         {
-                                            user?.uid ? <NavLink
-                                                to={'login'}
-                                                onClick={() => { signOut(auth) }}
-                                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}>LogOut</NavLink> :
+                                            user?.uid ?
+
+                                                <Menu as="div" className="ml-3 relative">
+                                                    <div>
+                                                        <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                                            <span className="sr-only">Open user menu</span>
+                                                            <img
+                                                                className="h-8 w-8 rounded-full"
+                                                                src={user?.uid ? user.photoURL : "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
+                                                                alt=""
+                                                            />
+                                                        </Menu.Button>
+                                                    </div>
+                                                    <Transition
+                                                        as={Fragment}
+                                                        enter="transition ease-out duration-100"
+                                                        enterFrom="transform opacity-0 scale-95"
+                                                        enterTo="transform opacity-100 scale-100"
+                                                        leave="transition ease-in duration-75"
+                                                        leaveFrom="transform opacity-100 scale-100"
+                                                        leaveTo="transform opacity-0 scale-95"
+                                                    >
+                                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-5 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                            <NavLink
+                                                                to={'/myItem'}
+                                                                className={({ isActive }) => (`block mb-3  text-base font-semibold ${isActive ? 'text-blue-500' : 'text-black'}`)}>Your Items</NavLink>
+
+                                                            <NavLink
+                                                                to={'login'}
+                                                                onClick={() => { signOut(auth) }}
+                                                                className={({ isActive }) => (`block mt3  text-base font-semibold ${isActive ? 'text-blue-500' : 'text-black'}`)}>
+                                                                LogOut
+                                                            </NavLink>
+
+                                                        </Menu.Items>
+                                                    </Transition>
+                                                </Menu>
+
+
+
+
+                                                :
 
                                                 location.pathname.includes('/signup') ? <NavLink
                                                     to={'signup'}
@@ -93,6 +136,8 @@ const Navbar = () => {
                                                     className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}
                                                 >Login</NavLink>
                                         }
+
+
                                     </div>
                                 </div>
                             </div>
