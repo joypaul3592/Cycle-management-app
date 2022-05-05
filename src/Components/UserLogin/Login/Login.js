@@ -78,7 +78,7 @@ const Login = () => {
     // User successfully sign up
     if (user) {
         naviget(from, { replace: true });
-        toast("Wow Sign Up Successfully!")
+        // toast.success("Wow Sign Up Successfully!")
     }
 
 
@@ -111,7 +111,7 @@ const Login = () => {
     return (
         <div className="login-container">
             <div className='mb-24 mx-5 '>
-                <div className="  w-full lg:w-1/2 md:w-3/4 mx-auto bg-opacity-90 shadow-lg relative">
+                <div className="w-full lg:w-1/2 md:w-3/4 mx-auto bg-opacity-90 shadow-lg relative">
 
                     <div className=" p-5 mt-[8rem]   bg-opacity-60 backdrop-blur-lg rounded-lg ">
                         <h1 className='text-4xl font-semibold mb-5'>log In</h1>
@@ -137,21 +137,13 @@ const Login = () => {
                         <p className=' font-mono font-medium'>Create New Account? <span onClick={() => naviget('/signup')} className=' text-sky-700 cursor-pointer'>Sign Up</span></p>
                         <p className=' font-mono font-medium'>Forget Password? <span onClick={resetPassword} className=' text-sky-700 cursor-pointer'>Reset Password</span></p>
                         <SocialLogin></SocialLogin>
-                        <ToastContainer />
+                        {/* <ToastContainer /> */}
                     </div>
                     <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
                     <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
                 </div>
-
             </div>
-
         </div>
-
-
-
-
-
-
     );
 };
 

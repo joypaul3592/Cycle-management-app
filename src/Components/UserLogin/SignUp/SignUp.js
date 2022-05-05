@@ -21,11 +21,15 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [comfirmPass, setComfirmPass] = useState('');
+    const [name, setName] = useState('');
+    const [photo, setPhoto] = useState('');
 
     // Error
     const [emailError, setEmailError] = useState('');
     const [passError, setPassError] = useState('');
     const [comfirmPassError, setComfirmPassError] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [photoError, setPhotoError] = useState('');
 
 
 
@@ -48,7 +52,7 @@ const SignUp = () => {
     // Password input value 
     const passwordClick = (e) => {
         const passwordValue = e.target.value;
-        if (passwordValue.length >= 6) {
+        if (passwordValue.length > 6) {
             setPassword(passwordValue);
             setPassError('')
         } else {
@@ -71,15 +75,19 @@ const SignUp = () => {
 
     // Submit section
     const HanddleSignUp = (e) => {
-        if (email !== '' && password !== '' && comfirmPass !== '') {
+        if (email !== '' && password !== '' && comfirmPass !== '' && name !== '' && photo !== '') {
             createUserWithEmailAndPassword(email, password)
             setEmailError('')
             setPassError('')
             setComfirmPassError('')
+            setPhotoError('')
+            setNameError('')
         } else {
             setEmailError('Please Fill The Input')
             setPassError('Please Give Me the Password')
             setComfirmPassError('Please Give Me the comfirm Password')
+            setPhotoError('Enter Your Photo Url')
+            setNameError('Enter Your Name')
         }
         e.preventDefault()
 
@@ -114,38 +122,68 @@ const SignUp = () => {
 
 
     return (
-        <div className='mb-24 mx-5'>
-            <div className="w-full lg:w-1/3 md:w-2/3 mx-auto p-5 mt-[8rem] rounded-lg bg-green-200 ">
-                <h1 className='text-4xl font-semibold mb-5'>Sign Up</h1>
-                <div className="h-[1px] w-full bg-black opacity-20 mb-10"></div>
-                <div className="flex flex-col text-left mb-8">
-                    <label className=' text-xl ml-2 mb-2' htmlFor="email">Email</label>
-                    <input onChange={emailClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="email" name="email" id="email" required />
-                </div>
-                {
-                    emailError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {emailError}</p> : ''
-                }
+        <div className="login-container">
+            <div className='mb-24 mx-5 '>
+                <div className="w-full lg:w-1/2 md:w-3/4 mx-auto bg-opacity-10 shadow-lg relative">
 
-                <div className="flex flex-col text-left mb-8">
-                    <label className=' text-xl  ml-2 mb-2' htmlFor="password">Password</label>
-                    <input onChange={passwordClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="password" name="password" id="password" required />
+                    <div className=" p-5 mt-[8rem]   bg-opacity-60 backdrop-blur-lg rounded-lg ">
+                        <h1 className='text-4xl font-semibold mb-5 font-mono'>Register</h1>
+                        <div className="h-[1px] w-full bg-black opacity-20 mb-10"></div>
+
+                        <div className="flex flex-col text-left mb-8">
+                            <label className=' text-xl ml-2 mb-2' htmlFor="name">Name</label>
+                            <input className='py-2 placeholder:text-base rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="text" name="name" id="name" placeholder='Enter Your Name' required />
+                        </div>
+                        {
+                            nameError ? <p className='text-left mb-7 text-red-600 flex '><XIcon className='w-5 mr-2'></XIcon> {nameError}</p> : ''
+                        }
+
+                        <div className="flex flex-col text-left mb-8">
+                            <label className=' text-xl ml-2 mb-2' htmlFor="email">Email</label>
+                            <input onChange={emailClick} className='py-2 rounded-lg shadow-md border-0 placeholder:text-base outline-0 px-4 text-xl' type="email" name="email" id="email" placeholder='Enter Your Email' required />
+                        </div>
+                        {
+                            emailError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {emailError}</p> : ''
+                        }
+
+                        <div className="flex flex-col text-left mb-8">
+                            <label className=' text-xl  ml-2 mb-2' htmlFor="password">Password</label>
+                            <input onChange={passwordClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl placeholder:text-base' type="password" name="password" id="password" placeholder='Enter Your Password' required />
+                        </div>
+                        {
+                            passError ? <p className='text-left mb-7 text-red-600 flex '><XIcon className='w-5 mr-2'></XIcon> {passError}</p> : ''
+                        }
+
+
+                        <div className="flex flex-col text-left mb-8">
+                            <label className=' text-xl  ml-2 mb-2' htmlFor="password">Comfirm Password</label>
+                            <input onChange={comfirmPassClick} className='py-2 rounded-lg shadow-md border-0 placeholder:text-base outline-0 px-4 text-xl' type="password" name="password" id="password" placeholder='Enter Your Comfiram Password' required />
+                        </div>
+                        {
+                            comfirmPassError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {comfirmPassError}</p> : ''
+                        }
+
+
+                        <div className="flex flex-col text-left mb-8">
+                            <label className=' text-xl ml-2 mb-2' htmlFor="photo">Your Photo</label>
+                            <input className='py-2 rounded-lg shadow-md placeholder:text-base border-0 outline-0 px-4 text-xl' type="url" name="photo" id="photo" placeholder='Enter Your Photo URL' required />
+                        </div>
+                        {
+                            photoError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {photoError}</p> : ''
+                        }
+
+
+
+
+                        <div className="btn-container mt-10 mb-3">
+                            <button onClick={HanddleSignUp} className='w-full bg-fuchsia-800 shadow-md py-2 text-2xl rounded text-white'>Register</button>
+                        </div>
+                        <p className=' font-mono font-medium'>Allrady have an account? <span onClick={() => naviget('/login')} className=' text-fuchsia-800 cursor-pointer font-mono font-bold text-xl'>Sign Up</span></p>
+                        <SocialLogin></SocialLogin>
+                    </div>
+                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
+                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
                 </div>
-                {
-                    passError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {passError}</p> : ''
-                }
-                <div className="flex flex-col text-left mb-8">
-                    <label className=' text-xl  ml-2 mb-2' htmlFor="ComfirmPassword">Comfirm Password</label>
-                    <input onChange={comfirmPassClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="password" name="ComfirmPassword" id="ComfirmPassword" required />
-                </div>
-                {
-                    comfirmPassError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {comfirmPassError}</p> : ''
-                }
-                <div className="btn-container mx-10 mt-10 mb-3">
-                    <button onClick={HanddleSignUp} className='w-1/2 bg-green-500 shadow-md py-2 text-2xl rounded text-white'>Sign Up</button>
-                </div>
-                <p className=' font-mono font-medium'>Already have an Account? <span onClick={() => naviget('/login')} className=' text-sky-700 cursor-pointer'>LogIn</span></p>
-                <SocialLogin></SocialLogin>
-                <ToastContainer />
             </div>
         </div>
     );

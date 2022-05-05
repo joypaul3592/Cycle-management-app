@@ -3,9 +3,9 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify';
 import logo from '../../../img/logo.png'
 import auth from '../../Firebase/Firebase.init'
-
 
 
 function classNames(...classes) {
@@ -17,6 +17,10 @@ const Navbar = () => {
     const [user] = useAuthState(auth)
 
 
+    // if (user?._id) {
+    //     toast.success('Succesfully LogIn!!')
+    // }
+
     return (
         <Disclosure
             as="nav" className=" shadow-md sticky top-0 z-40 bg-white">
@@ -24,7 +28,7 @@ const Navbar = () => {
                 <>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 bg-white">
                         <div className="relative flex items-center justify-between h-16 ">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                            <div className="absolute inset-y-0 left-0 flex items-center lg:hidden ">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="sr-only">Open main menu</span>
@@ -35,7 +39,7 @@ const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-between ">
+                            <div className="flex-1 flex items-center lg:justify-between sm:justify-center lg:items-stretch   ">
                                 <div>
                                     <Link className="flex-shrink-0 flex items-center " to={'/'}>
                                         <img
@@ -46,7 +50,7 @@ const Navbar = () => {
                                         <h1 className='text-3xl font-bold font-mono text-black mx-4'>Get<span className=' text-purple-500'>Cycle</span></h1>
                                     </Link>
                                 </div>
-                                <div className="hidden  sm:block sm:ml-6 ">
+                                <div className="hidden  lg:block sm:ml-6 ">
                                     <div className="flex space-x-4">
                                         <NavLink
                                             to={'/'}
@@ -73,7 +77,7 @@ const Navbar = () => {
 
                                     </div>
                                 </div>
-                                <div className="hidden  sm:block sm:ml-6 mr-2">
+                                <div className="hidden  lg:block sm:ml-6 mr-2">
                                     <div className="flex items-center justify-center h-full">
                                         {
                                             user?.uid ? <NavLink
@@ -95,24 +99,29 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <Disclosure.Panel className="sm:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1">
+                    <Disclosure.Panel className="lg:hidden ">
+                        <div className="flex flex-col px-2 pt-2 pb-3 space-y-1">
                             <NavLink
                                 to={'/'}
-                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
                             >Home</NavLink>
                             <NavLink
-                                to={'service'}
-                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-purple-500' : 'text-black'}`)}
-                            >Service</NavLink>
+                                to={'manageItem'}
+                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                            >Manage Items</NavLink>
+                            <NavLink
+                                to={'addItem'}
+                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                            >Add Items</NavLink>
+                            <NavLink
+                                to={'myItem'}
+                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                            >My Items
+                            </NavLink>
                             <NavLink
                                 to={'blog'}
-                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-purple-500' : 'text-black'}`)}
-                            >Blog</NavLink>
-                            <NavLink
-                                to={'about'}
-                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-purple-500' : 'text-black'}`)}
-                            >About
+                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                            >Blog
                             </NavLink>
                         </div>
                         <div className="px-2 pt-2 pb-3 space-y-1">
@@ -134,10 +143,12 @@ const Navbar = () => {
                             </div>
                         </div>
                     </Disclosure.Panel>
+                    <ToastContainer />
                 </>
             )
             }
         </Disclosure >
+
 
     );
 };
