@@ -109,34 +109,49 @@ const Login = () => {
 
 
     return (
-        <div className='mb-24 mx-5  '>
-            <div className="w-full lg:w-1/2 md:w-3/4 mx-auto p-5 mt-[8rem] rounded-lg bg-fuchsia-200 ">
-                <h1 className='text-4xl font-semibold mb-5'>log In</h1>
-                <div className="h-[1px] w-full bg-black opacity-20 mb-10"></div>
-                <div className="flex flex-col text-left mb-8">
-                    <label className=' text-xl ml-2 mb-2' htmlFor="email">Email</label>
-                    <input onChange={emailClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="email" name="email" id="email" required />
-                </div>
-                {
-                    emailError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {emailError}</p> : ''
-                }
+        <div className="login-container">
+            <div className='mb-24 mx-5 '>
+                <div className="  w-full lg:w-1/2 md:w-3/4 mx-auto bg-opacity-90 shadow-lg relative">
 
-                <div className="flex flex-col text-left mb-8">
-                    <label className=' text-xl  ml-2 mb-2' htmlFor="password">Password</label>
-                    <input onChange={passwordClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="password" name="password" id="password" required />
+                    <div className=" p-5 mt-[8rem]   bg-opacity-60 backdrop-blur-lg rounded-lg ">
+                        <h1 className='text-4xl font-semibold mb-5'>log In</h1>
+                        <div className="h-[1px] w-full bg-black opacity-20 mb-10"></div>
+                        <div className="flex flex-col text-left mb-8">
+                            <label className=' text-xl ml-2 mb-2' htmlFor="email">Email</label>
+                            <input onChange={emailClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="email" name="email" id="email" required />
+                        </div>
+                        {
+                            emailError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {emailError}</p> : ''
+                        }
+
+                        <div className="flex flex-col text-left mb-8">
+                            <label className=' text-xl  ml-2 mb-2' htmlFor="password">Password</label>
+                            <input onChange={passwordClick} className='py-2 rounded-lg shadow-md border-0 outline-0 px-4 text-xl' type="password" name="password" id="password" required />
+                        </div>
+                        {
+                            passError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {passError}</p> : ''
+                        }
+                        <div className="btn-container mx-10 mt-10 mb-3">
+                            <button onClick={handelLogin} className='w-1/2 bg-fuchsia-400 shadow-md py-2 text-2xl rounded text-white'>Log In</button>
+                        </div>
+                        <p className=' font-mono font-medium'>Create New Account? <span onClick={() => naviget('/signup')} className=' text-sky-700 cursor-pointer'>Sign Up</span></p>
+                        <p className=' font-mono font-medium'>Forget Password? <span onClick={resetPassword} className=' text-sky-700 cursor-pointer'>Reset Password</span></p>
+                        <SocialLogin></SocialLogin>
+                        <ToastContainer />
+                    </div>
+                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
+                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
                 </div>
-                {
-                    passError ? <p className='text-left mb-7 text-red-600 flex'><XIcon className='w-5 mr-2'></XIcon> {passError}</p> : ''
-                }
-                <div className="btn-container mx-10 mt-10 mb-3">
-                    <button onClick={handelLogin} className='w-1/2 bg-fuchsia-400 shadow-md py-2 text-2xl rounded text-white'>Log In</button>
-                </div>
-                <p className=' font-mono font-medium'>Create New Account? <span onClick={() => naviget('/signup')} className=' text-sky-700 cursor-pointer'>Sign Up</span></p>
-                <p className=' font-mono font-medium'>Forget Password? <span onClick={resetPassword} className=' text-sky-700 cursor-pointer'>Reset Password</span></p>
-                <SocialLogin></SocialLogin>
-                <ToastContainer />
+
             </div>
+
         </div>
+
+
+
+
+
+
     );
 };
 

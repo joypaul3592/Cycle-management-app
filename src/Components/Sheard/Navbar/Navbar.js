@@ -1,10 +1,10 @@
 import { Disclosure, Menu } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-// import { signOut } from 'firebase/auth';
-// import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, useLocation } from 'react-router-dom'
-// import auth from '../../Firebase/Firebase.init';
 import logo from '../../../img/logo.png'
+import auth from '../../Firebase/Firebase.init'
 
 
 
@@ -13,8 +13,8 @@ function classNames(...classes) {
 }
 const Navbar = () => {
 
-    // const location = useLocation()
-    // const [user] = useAuthState(auth)
+    const location = useLocation()
+    const [user] = useAuthState(auth)
 
 
     return (
@@ -53,44 +53,42 @@ const Navbar = () => {
                                             className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
                                         >Home</NavLink>
                                         <NavLink
-                                            to={'service'}
+                                            to={'manageItem'}
                                             className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
-                                        >Service</NavLink>
+                                        >Manage Items</NavLink>
+                                        <NavLink
+                                            to={'addItem'}
+                                            className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                                        >Add Items</NavLink>
+                                        <NavLink
+                                            to={'myItem'}
+                                            className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                                        >My Items
+                                        </NavLink>
                                         <NavLink
                                             to={'blog'}
                                             className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
-                                        >Blog</NavLink>
-                                        <NavLink
-                                            to={'about'}
-                                            className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
-                                        >About
+                                        >Blog
                                         </NavLink>
-
-
-                                        {
-                                            // user?.uid ? <NavLink
-                                            //     to={'login'}
-                                            //     onClick={() => { signOut(auth) }}
-                                            //     className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}>LogOut</NavLink> :
-
-                                            //     location.pathname.includes('/signup') ? <NavLink
-                                            //         to={'signup'}
-                                            //         className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}
-                                            //     >SignUp</NavLink> : <NavLink
-                                            //         to={'login'}
-                                            //         className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}
-                                            //     >Login</NavLink>
-                                        }
 
                                     </div>
                                 </div>
                                 <div className="hidden  sm:block sm:ml-6 mr-2">
                                     <div className="flex items-center justify-center h-full">
-                                        <NavLink
-                                            to={'login'}
-                                            className={({ isActive }) => (`rounded-md text-xl font-medium  ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                                        {
+                                            user?.uid ? <NavLink
+                                                to={'login'}
+                                                onClick={() => { signOut(auth) }}
+                                                className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}>LogOut</NavLink> :
 
-                                        >Login</NavLink>
+                                                location.pathname.includes('/signup') ? <NavLink
+                                                    to={'signup'}
+                                                    className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}
+                                                >SignUp</NavLink> : <NavLink
+                                                    to={'login'}
+                                                    className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-blue-500' : 'text-black'}`)}
+                                                >Login</NavLink>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -116,29 +114,23 @@ const Navbar = () => {
                                 className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-purple-500' : 'text-black'}`)}
                             >About
                             </NavLink>
-
-                            {
-                                // user?.uid ? <NavLink
-                                //     to={'login'}
-                                //     onClick={() => { signOut(auth) }}
-                                //     className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-blue-500' : 'text-black'}`)}>LogOut</NavLink> :
-
-                                //     location.pathname.includes('/signup') ? <NavLink
-                                //         to={'signup'}
-                                //         className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-blue-500' : 'text-black'}`)}
-                                //     >SignUp</NavLink> : <NavLink
-                                //         to={'login'}
-                                //         className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-blue-500' : 'text-black'}`)}
-                                //     >Login</NavLink>
-                            }
                         </div>
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             <div className="flex items-center justify-center h-full">
-                                <NavLink
-                                    to={'login'}
-                                    className={({ isActive }) => (`rounded-md text-xl font-medium  ${isActive ? 'text-purple-500' : 'text-black'}`)}
+                                {
+                                    user?.uid ? <NavLink
+                                        to={'login'}
+                                        onClick={() => { signOut(auth) }}
+                                        className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-blue-500' : 'text-black'}`)}>LogOut</NavLink> :
 
-                                >Login</NavLink>
+                                        location.pathname.includes('/signup') ? <NavLink
+                                            to={'signup'}
+                                            className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-blue-500' : 'text-black'}`)}
+                                        >SignUp</NavLink> : <NavLink
+                                            to={'login'}
+                                            className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium block ${isActive ? 'text-blue-500' : 'text-black'}`)}
+                                        >Login</NavLink>
+                                }
                             </div>
                         </div>
                     </Disclosure.Panel>

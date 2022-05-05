@@ -19,8 +19,8 @@ const Products = () => {
                 <h1>Product</h1>
             </div>
 
-            <div className=' max-w-7xl mx-auto grid lg:grid-cols-2 grid-cols-1'>
-                <main class="grid place-items-center   mx-5 my-16 bg-gradient-to-r from-pink-400  rounded-l-lg ">
+            <div className=' max-w-7xl mx-auto grid lg:grid-cols-2 grid-cols-1 gap-8 px-5'>
+                <main class=" mx-auto my-16 relative">
                     <section class="flex flex-col md:flex-row gap-10 py-10 px-4 rounded-md shadow-lg w-full md:max-w-2xl bg-white bg-opacity-60 backdrop-blur-md">
                         <div class="text-indigo-500 flex flex-col justify-between">
                             <img className='w-[800px] h-[200px] mt-[25%] ' src={cycleImage1} alt="" />
@@ -37,16 +37,19 @@ const Products = () => {
                             </div>
                         </div>
                     </section>
+                    <div className="circle h-[200px] w-[200px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute left-10 bottom-12 md:animate-pulse -z-10"></div>
+
+                    <div className="circle h-[200px] w-[200px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-20 bottom-12 md:animate-pulse delay-1000 -z-10"></div>
                 </main>
 
-                <main class="grid place-items-center   mx-5 my-16 bg-gradient-to-r from-blue-400 rounded-l-lg ">
+                <main class=" mx-auto my-16 relative">
                     <section class="flex flex-col md:flex-row gap-10 py-10 px-4 rounded-md shadow-lg w-full md:max-w-2xl bg-white bg-opacity-60 backdrop-blur-md">
                         <div class="text-indigo-500 flex flex-col justify-between">
-                            <img className='w-[800px] h-[200px]  mt-[25%] ' src={cycleImage4} alt="" />
+                            <img className='w-[800px] h-[200px] mt-[25%] ' src={cycleImage4} alt="" />
                         </div>
                         <div class="text-indigo-500">
-                            <h3 class="uppercase text-black text-2xl font-medium">Speeds BiCycle</h3>
-                            <h3 class="text-2xl font-semibold mb-7">$230</h3>
+                            <h3 class="uppercase text-black text-2xl font-medium">Canyon BiCycle</h3>
+                            <h3 class="text-2xl font-semibold mb-7">$150</h3>
                             <div className=" text-justify">
                                 <small class="text-black ">Factory Full suspension Aluminum mountainbike 21 speed men Cycling 27.5 inch Mountain adults Bicycle 26 MTB Gear Cycle bike</small>
                             </div>
@@ -56,8 +59,10 @@ const Products = () => {
                             </div>
                         </div>
                     </section>
-                </main>
+                    <div className="circle h-[200px] w-[200px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute left-10 bottom-12 md:animate-pulse -z-10"></div>
 
+                    <div className="circle h-[200px] w-[200px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-20 bottom-12 md:animate-pulse delay-1000 -z-10"></div>
+                </main>
 
 
             </div>
