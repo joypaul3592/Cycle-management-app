@@ -8,20 +8,23 @@ const AddProduct = () => {
             name: e.target.name.value,
             price: e.target.price.value,
             image: e.target.image.value,
+            quentity: e.target.pdQuentity.value,
+            details: e.target.pdDetails.value,
+            supplierName: e.target.spName.value
         };
+        console.log(product);
+        // try {
+        //     const { data } = await axios.post(`http://localhost:5000/products`, product)
 
-        try {
-            const { data } = await axios.post(`http://localhost:5000/products`, product)
-
-            if (!data.success) {
-                return toast.error(data.error)
-            }
-            toast.success(data.message)
-            e.target.reset()
-        } catch (error) {
-            console.log(error);
-            toast.error(error.message)
-        }
+        //     if (!data.success) {
+        //         return toast.error(data.error)
+        //     }
+        //     toast.success(data.message)
+        //     e.target.reset()
+        // } catch (error) {
+        //     console.log(error);
+        //     toast.error(error.message)
+        // }
 
     };
     return (
@@ -31,15 +34,15 @@ const AddProduct = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="flex items-center mb-10">
                             <label className="inline-block w-40 mr-6 text-right font-bold text-fuchsia-700">
-                                Product Name :
+                                Name :
                             </label>
                             <input
                                 type="text"
                                 name="name"
-                                placeholder="Name"
+                                placeholder="Product Name"
                                 className="flex-1 py-2 border-b-2 border-green-600 focus:border-fuchsia-700 
                                 text-black placeholder-black
-                      outline-none"
+                      outline-none" required
                             />
                         </div>
 
@@ -52,13 +55,14 @@ const AddProduct = () => {
                             <input
                                 type="text"
                                 name="price"
-                                placeholder="price"
+                                placeholder="Product Price"
                                 className="flex-1 py-2 border-b-2 
                                 bg-transparent border-green-600 focus:border-fuchsia-700 
                       text-black placeholder-black
-                      outline-none"
+                      outline-none" required
                             />
                         </div>
+
 
                         <div className="flex items-center mb-10">
                             <label
@@ -70,10 +74,41 @@ const AddProduct = () => {
                             <input
                                 type="text"
                                 name="image"
-                                placeholder="url"
+                                placeholder="Product Image URL"
                                 className="flex-1 py-2 border-b-2 bg-transparent border-green-600 focus:border-fuchsia-700 
                                 text-black placeholder-black
-                      outline-none"
+                      outline-none" required
+                            />
+                        </div>
+
+
+                        <div className="flex items-center mb-10">
+                            <label className="inline-block w-40 mr-6 text-right font-bold text-fuchsia-700 ">
+                                Quentity :
+                            </label>
+                            <input
+                                type="text"
+                                name="pdQuentity"
+                                placeholder="Product Quentity"
+                                className="flex-1 py-2 border-b-2 
+                                bg-transparent border-green-600 focus:border-fuchsia-700 
+                      text-black placeholder-black
+                      outline-none" required
+                            />
+                        </div>
+
+                        <div className="flex items-center mb-10">
+                            <label className="inline-block w-40 mr-6 text-right font-bold text-fuchsia-700">
+                                Supplier Name :
+                            </label>
+                            <input
+                                type="text"
+                                name="spName"
+                                placeholder="Supplier Name"
+                                className="flex-1 py-2 border-b-2 bg-transparent 
+                                border-green-600 focus:border-fuchsia-700 
+                                text-black placeholder-black
+                      outline-none" required
                             />
                         </div>
 
@@ -83,12 +118,12 @@ const AddProduct = () => {
                             </label>
                             <textarea
                                 type="text"
-                                name="name"
+                                name="pdDetails"
                                 placeholder="Add Your Product Details"
                                 className="flex-1 py-2 border-b-2 bg-transparent 
                                 border-green-600 focus:border-fuchsia-700 
                                 text-black placeholder-black
-                      outline-none"
+                      outline-none" required
                             />
                         </div>
 
