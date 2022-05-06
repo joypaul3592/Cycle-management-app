@@ -9,22 +9,22 @@ const AddProduct = () => {
             price: e.target.price.value,
             image: e.target.image.value,
             quentity: e.target.pdQuentity.value,
-            details: e.target.pdDetails.value,
-            supplierName: e.target.spName.value
+            SPName: e.target.spName.value,
+            details: e.target.pdDetails.value
         };
         console.log(product);
-        // try {
-        //     const { data } = await axios.post(`http://localhost:5000/products`, product)
+        try {
+            const { data } = await axios.post(`http://localhost:5000/product`, product)
 
-        //     if (!data.success) {
-        //         return toast.error(data.error)
-        //     }
-        //     toast.success(data.message)
-        //     e.target.reset()
-        // } catch (error) {
-        //     console.log(error);
-        //     toast.error(error.message)
-        // }
+            if (!data.success) {
+                return toast.error(data.error)
+            }
+            toast.success(data.message)
+            e.target.reset()
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message)
+        }
 
     };
     return (
