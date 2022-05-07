@@ -1,13 +1,19 @@
 import axios from "axios";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import auth from "../Firebase/Firebase.init";
+
+
 
 const AddProduct = () => {
+    const [user] = useAuthState(auth);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const product = {
             name: e.target.name.value,
             price: e.target.price.value,
             image: e.target.image.value,
+            email: user.email,
             quentity: e.target.pdQuentity.value,
             SPName: e.target.spName.value,
             details: e.target.pdDetails.value
@@ -130,7 +136,7 @@ const AddProduct = () => {
 
 
                         <div className="text-right">
-                            <button className="py-2 px-10 rounded-lg  bg-fuchsia-400 text-white font-bold">Add</button>
+                            <button className="py-2 px-10 rounded-lg  bg-fuchsia-700 text-white font-bold">Add</button>
                         </div>
                     </form>
                 </div>

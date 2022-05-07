@@ -117,7 +117,7 @@ const Navbar = () => {
                                                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-5 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                             <NavLink
                                                                 to={'/myItem'}
-                                                                className={({ isActive }) => (`block mb-3  text-base font-semibold ${isActive ? 'text-blue-500' : 'text-black'}`)}>Your Items</NavLink>
+                                                                className={({ isActive }) => (`block mb-3  text-base font-semibold ${isActive ? 'text-blue-500' : 'text-black'}`)}>My Product</NavLink>
 
                                                             <NavLink
                                                                 to={'login'}
