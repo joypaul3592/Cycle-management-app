@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import useProduct from '../Sheard/Hook/useProduct';
 
 const ManageProduct = () => {
 
 
 
+    const [deletes, setDeletes] = useState(false)
     const [products, setProducts] = useState([]);
 
 
@@ -18,7 +20,77 @@ const ManageProduct = () => {
         }
         fetchData()
 
-    }, [products])
+    }, [products, deletes])
+
+    // axios.delete('https://reqres.in/api/posts/1')
+
+
+
+
+    const deleteItems = (id) => {
+        const deleteItems = window.confirm('Your Product Delete')
+        if (deleteItems) {
+            fetch(`http://localhost:5000/product/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data) {
+                        setDeletes(true)
+                        toast.success("Items Delete")
+                    }
+                })
+        }
+        else {
+            return toast.error('Not Items Delete')
+        }
+
+    }
+
+    // const deleteItems = (id) => {
+    //     const deleteItem = window.confirm('Your Product Delete')
+    //     if (deleteItem) {
+    //         useEffect(() => {
+
+    //             const fetchData = async () => {
+    //                 const { data } = await axios.delete(`http://localhost:5000/product/${id}`);
+    //                 if (data) {
+    //                     setDeletes(true)
+    //                     toast.success("Items Delete")
+    //                 }
+    //             }
+    //             fetchData()
+
+    //         }, [])
+    //     }
+    // useEffect(() => {
+
+    //     const fetchData = async () => {
+    //         const { data } = await axios.get(`http://localhost:5000/product/${id}`);
+    //         setProducts(data.data)
+    //     }
+    //     fetchData()
+
+    // }, [products])
+
+
+    // const deleteItems = window.confirm('Your Product Delete')
+    // if (deleteItems) {
+    //     fetch(`http://localhost:5000/product/${id}`, {
+    //         method: 'DELETE',
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data) {
+    //                 setDelete(true)
+    //                 toast.success("Items Delete")
+    //             }
+    //         })
+    // }
+    // else {
+    //     return toast.error('Not Items Delete')
+    // }
+
 
 
 
@@ -27,39 +99,164 @@ const ManageProduct = () => {
 
 
     return (
-        <div>
-            <h1>This is Manage Product Page</h1>
-            <div className=' max-w-7xl mx-auto grid lg:grid-cols-2 grid-cols-1 gap-8 px-5'>
-                {
-                    products.map(product =>
-
-
-                        <main key={product._id} class=" mx-auto my-16 relative">
-                            <section class="flex flex-col md:flex-row gap-10 py-10 px-4 rounded-md shadow-lg w-full md:max-w-2xl bg-white bg-opacity-60 backdrop-blur-md">
-                                <div class="text-indigo-500 flex flex-col justify-between">
-                                    <img className='w-[300px] h-[200px] ' src={product.image} alt="" />
-                                </div>
-                                <div class="text-indigo-500">
-                                    <h3 class="uppercase text-black text-2xl font-medium">{product.name}</h3>
-                                    <h3 class="text-2xl font-semibold mb-7">${product.price}</h3>
-                                    <div className=" text-justify">
-                                        <small class="text-black ">{product.details}</small>
-                                    </div>
-                                    <div className='mt-5 text-right'>
-                                        <button id="addToCartButton" class="bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase px-8 py-2 rounded-sm">Update</button>
-
-                                    </div>
-                                </div>
-                            </section>
-                            <div className="circle h-[200px] w-[200px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute left-10 bottom-12 md:animate-pulse -z-10"></div>
-
-                            <div className="circle h-[200px] w-[200px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-20 bottom-12 md:animate-pulse delay-1000 -z-10"></div>
-                        </main>
-                    )
-                }
+        <div className='mb-20'>
+            <div>
+                {products.length}
+                <div>
+                    <table className='w-screen'>
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="hidden md:block px-6 py-2 text-xs text-gray-500">
+                                    ID
+                                </th>
+                                <th className="px-6 py-2 text-xs text-gray-500">
+                                    Name
+                                </th>
+                                <th className="px-6 py-2 text-xs text-gray-500">
+                                    images
+                                </th>
+                                <th className="px-6 py-2 text-xs text-gray-500">
+                                    Quantity
+                                </th>
+                                <th className="hidden md:block px-6 py-2 text-xs text-gray-500">
+                                    Edit
+                                </th>
+                                <th className="px-6 py-2 text-xs text-gray-500">
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-slate-100">
+                            {
+                                products.map(product => <tr key={product._id} className="text-center">
+                                    <td className="hidden md:block px-6 py-4 text-sm text-gray-500">
+                                        {product._id}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {product.name}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <img className='w-20' src={product.image} alt="" />
+                                    </td>
+                                    <td className="px-6 py-4 text-sm text-gray-500">
+                                        {product.quentity}
+                                    </td>
+                                    <td className="px-6 py-4 hidden md:block">
+                                        Edit
+                                    </td>
+                                    <td onClick={() => deleteItems(product._id)} className="px-6 py-4 cursor-pointer">
+                                        Delete
+                                    </td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
 };
 
 export default ManageProduct;
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { toast } from 'react-toastify';
+// import Title from '../../shared/Title/Title';
+// const Manages = () => {
+//     const [product, setProduct] = useState([])
+//     const [Deletes, setDelete] = useState(false)
+//     useEffect(() => {
+//         fetch('http://localhost:5000/items
+// ')
+//             .then(res => res.json())
+//             .then(data => setProduct(data))
+//     }, [Deletes, product])
+
+
+//     const deleteItems = (id) => {
+//         const deleteItems = window.confirm('Your Product Delete')
+//         if (deleteItems) {
+//             fetch(http://localhost:5000/items/${id}, {
+//                 method: 'DELETE',
+//             })
+//                 .then(res => res.json())
+//                 .then(data => {
+//                     if (data) {
+//                         setDelete(true)
+//                         toast.success("Items Delete")
+//                     }
+//                 })
+//         }
+//         else{
+//             return toast.error('Not Items Delete')
+//         }
+
+//     }
+//     return (
+//         <div className='mb-20'>
+//             <Title title={Manages}></Title>
+//             <div>
+//                 {product.length}
+//                 <div>
+//                     <table className='w-screen'>
+//                         <thead className="bg-gray-50">
+//                             <tr>
+//                                 <th className="hidden md:block px-6 py-2 text-xs text-gray-500">
+//                                     ID
+//                                 </th>
+//                                 <th className="px-6 py-2 text-xs text-gray-500">
+//                                     Name
+//                                 </th>
+//                                 <th className="px-6 py-2 text-xs text-gray-500">
+//                                     images
+//                                 </th>
+//                                 <th className="px-6 py-2 text-xs text-gray-500">
+//                                     Quantity
+//                                 </th>
+//                                 <th className="hidden md:block px-6 py-2 text-xs text-gray-500">
+//                                     Edit
+//                                 </th>
+//                                 <th className="px-6 py-2 text-xs text-gray-500">
+//                                     Delete
+//                                 </th>
+//                             </tr>
+//                         </thead>
+//                         <tbody className="bg-slate-100">
+//                             {
+//                                 product.map(product => <tr key={product._id} className="text-center">
+//                                     <td className="hidden md:block px-6 py-4 text-sm text-gray-500">
+//                                         {product._id}
+//                                     </td>
+//                                     <td className="px-6 py-4">
+//                                         {product.names}
+//                                     </td>
+//                                     <td className="px-6 py-4">
+//                                         <img className='w-20' src={product.images} alt="" />
+//                                     </td>
+//                                     <td className="px-6 py-4 text-sm text-gray-500">
+//                                         {product.quantity}
+//                                     </td>
+//                                     <td className="px-6 py-4 hidden md:block">
+//                                         Edit
+//                                     </td>
+//                                     <td onClick={() => deleteItems(product._id)} className="px-6 py-4 cursor-pointer">
+//                                         Delete
+//                                     </td>
+//                                 </tr>)
+//                             }
+//                         </tbody>
+//                     </table>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default Manages;

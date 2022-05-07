@@ -24,6 +24,13 @@ const Navbar = () => {
         }
     }, [user, userUrl])
 
+    const userSignOut = () => {
+        signOut(auth)
+        toast.success('LogOut Succesfull!!')
+    }
+
+
+
 
 
     return (
@@ -114,7 +121,7 @@ const Navbar = () => {
 
                                                             <NavLink
                                                                 to={'login'}
-                                                                onClick={() => { signOut(auth) }}
+                                                                onClick={userSignOut}
                                                                 className={({ isActive }) => (`block mt3  text-base font-semibold ${isActive ? 'text-blue-500' : 'text-black'}`)}>
                                                                 LogOut
                                                             </NavLink>
