@@ -26,7 +26,7 @@ const Navbar = () => {
 
     const userSignOut = () => {
         signOut(auth)
-        toast.success('LogOut Succesfull!!')
+        toast.success('LogOut Successful!!')
     }
 
 

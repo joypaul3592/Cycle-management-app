@@ -24,7 +24,7 @@ const SocialLogin = () => {
     useEffect(() => {
         if (user || Gituser) {
             naviget('/')
-            toast.success('Social login Successfull')
+            toast.success('Social login Successful!!')
         }
     }, [user, Gituser])
 

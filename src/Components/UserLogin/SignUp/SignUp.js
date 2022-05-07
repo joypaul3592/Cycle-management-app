@@ -351,7 +351,7 @@ const SignUp = () => {
     useEffect(() => {
         if (user) {
             navigate('/')
-            toast.success('SignUp Successfull')
+            toast.success('SignUp Successful!!')
         }
     }, [user])
 

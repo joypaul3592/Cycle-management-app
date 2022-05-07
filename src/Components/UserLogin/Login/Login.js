@@ -90,7 +90,7 @@ const Login = () => {
     useEffect(() => {
         if (user) {
             naviget(from, { replace: true });
-            toast.success("Login Successfully!")
+            toast.success("Login Successful!!")
         }
     }, [user])
 

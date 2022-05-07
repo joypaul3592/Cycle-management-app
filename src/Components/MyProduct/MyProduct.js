@@ -13,7 +13,7 @@ const MyProduct = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const { data } = await axios.get('http://localhost:5000/product');
+            const { data } = await axios.get(`http://localhost:5000/product?email=${email}`);
             setProducts(data.data)
         }
         fetchData()
