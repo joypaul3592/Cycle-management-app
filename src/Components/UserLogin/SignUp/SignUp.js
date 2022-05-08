@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { EyeIcon, EyeOffIcon, XIcon } from '@heroicons/react/outline'
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/Firebase.init';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
     const location = useLocation()
@@ -15,7 +15,8 @@ const SignUp = () => {
     const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile] = useUpdateProfile(auth);
     const navigate = useNavigate();
-
+    const [signInWithGoogle, goolgeUser, googleLoading, googlEerror] = useSignInWithGoogle(auth);
+    const [signInWithGithub, Gituser, Gitloading, Giterror] = useSignInWithGithub(auth);
 
     // password check
     const [handel, setHandel] = useState('')
@@ -80,7 +81,20 @@ const SignUp = () => {
         }
     }, [error])
 
+    useEffect(() => {
+        if (error || Giterror || googlEerror) {
+            toast("Opps!! User Not Found")
+        }
+    }, [error, Giterror])
 
+
+
+    useEffect(() => {
+        if (user || Gituser || goolgeUser) {
+            naviget(from, { replace: true });
+            toast.success('Social login Successful!!')
+        }
+    }, [user, Gituser])
 
 
     return (
@@ -139,13 +153,28 @@ const SignUp = () => {
                                 <input type="submit" className='w-full bg-fuchsia-800 shadow-md py-2 text-2xl rounded text-white' value='Register' />
                             </div>
                             <p className=' font-mono font-medium mt-8'>Allrady have an account? <span onClick={() => navigate('/login')} className=' text-fuchsia-800 cursor-pointer font-mono font-bold text-xl '>Log In</span></p>
-                            <SocialLogin></SocialLogin>
+                            <div>
+                                <div className="flex items-center justify-between my-4">
+                                    <div className="w-[45%] h-[1px] bg-black opacity-20"></div>
+                                    <p>or</p>
+                                    <div className="w-[45%] h-[1px] bg-black opacity-20"></div>
+                                </div>
+                                <div onClick={() => signInWithGoogle()} className=" cursor-pointer flex items-center justify-center w-11/12 md:w-7/12 mx-auto bg-slate-50 rounded-lg shadow-md mb-5" >
+                                    <img className='w-[45px] mr-2' src="https://pngimg.com/uploads/google/google_PNG19635.png" alt="" />
+                                    <h3 className=' font-semibold'>Continue With Google</h3>
+                                </div>
+                                <div onClick={() => signInWithGithub()} className=" cursor-pointer flex items-center justify-center w-11/12 md:w-7/12 mx-auto bg-slate-50 rounded-lg shadow-md mb-5"  >
+                                    <img className='w-[45px] p-1 mr-2 text-white' src="https://pngimg.com/uploads/github/github_PNG87.png" alt="" />
+                                    <h3 className=' font-semibold'>Continue With GitHub</h3>
+                                </div>
+                            </div>
 
                         </form>
                     </div>
                     <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
                     <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
                 </div>
+                <ToastContainer />
 
             </div>
 

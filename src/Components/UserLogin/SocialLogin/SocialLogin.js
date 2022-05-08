@@ -32,9 +32,6 @@ const SocialLogin = () => {
 
 
 
-
-
-
     return (
         <div>
             <div className="flex items-center justify-between my-4">
@@ -50,6 +47,7 @@ const SocialLogin = () => {
                 <img className='w-[45px] p-1 mr-2 text-white' src="https://pngimg.com/uploads/github/github_PNG87.png" alt="" />
                 <h3 className=' font-semibold'>Continue With GitHub</h3>
             </div>
+
         </div>
     );
 };

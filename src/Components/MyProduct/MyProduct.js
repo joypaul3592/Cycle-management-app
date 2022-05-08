@@ -15,7 +15,7 @@ const MyProduct = () => {
 
         const getProducts = async () => {
             const email = user.email;
-            const url = `http://localhost:5000/product?email=${email}`
+            const url = `https://secure-depths-99773.herokuapp.com/product?email=${email}`
             const { data } = await axios.get(url);
             if (!data?.success) {
                 toast.error(data.error);

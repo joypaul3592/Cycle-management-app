@@ -195,7 +195,7 @@ const Navbar = () => {
                             </div>
                         </div>
                     </Disclosure.Panel>
-                    <ToastContainer />
+
                 </>
             )
             }

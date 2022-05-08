@@ -19,7 +19,7 @@ const UserProduct = ({ pd }) => {
         if (deleteItems) {
 
 
-            fetch(`http://localhost:5000/product/${id}`, {
+            fetch(`https://secure-depths-99773.herokuapp.com/product/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
