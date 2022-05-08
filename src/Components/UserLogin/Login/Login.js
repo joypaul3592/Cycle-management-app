@@ -126,6 +126,26 @@ const Login = () => {
 
     // for loading
 
+
+
+    useEffect(() => {
+        if (error || Giterror || googlEerror) {
+            toast("Opps!! User Not Found")
+        }
+    }, [error, Giterror])
+
+
+
+    useEffect(() => {
+        if (user || Gituser || goolgeUser) {
+            naviget(from, { replace: true });
+            toast.success('Social login Successful!!')
+        }
+    }, [user, Gituser])
+
+
+
+
     if (loading) {
         return <Loading></Loading>
     }
@@ -142,20 +162,6 @@ const Login = () => {
 
     }
 
-    useEffect(() => {
-        if (error || Giterror || googlEerror) {
-            toast("Opps!! User Not Found")
-        }
-    }, [error, Giterror])
-
-
-
-    useEffect(() => {
-        if (user || Gituser || goolgeUser) {
-            naviget(from, { replace: true });
-            toast.success('Social login Successful!!')
-        }
-    }, [user, Gituser])
 
 
 
