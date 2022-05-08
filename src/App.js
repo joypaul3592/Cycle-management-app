@@ -10,6 +10,7 @@ import MyProduct from './Components/MyProduct/MyProduct';
 import Blog from './Components/Blog/Blog';
 import RequireAuth from './Components/UserLogin/RequireAuth/RequireAuth';
 import ManagmentInventory from './Components/ManagmentInventory/ManagmentInventory';
+import ErrorPage from './Components/ErrorPage/ErrorPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/myItem" element={<RequireAuth><MyProduct></MyProduct></RequireAuth>} />
         <Route path="/managmentInventory/:id" element={<RequireAuth><ManagmentInventory></ManagmentInventory></RequireAuth>} />
         <Route path="/blog" element={<Blog></Blog>} />
+        <Route path="*" element={<ErrorPage></ErrorPage>} />
       </Routes>
     </div>
   );

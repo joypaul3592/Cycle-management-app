@@ -77,7 +77,7 @@ const ManagmentInventory = () => {
                 </div>
                 <div>
                     <button onClick={QuantityInputAdd} className=' bg-green-800 text-white mx-8  rounded px-3 py-1 mb-4'>submit</button>
-                    <button onClick={CountHandel} className=' bg-fuchsia-800 text-white rounded px-3 py-1 mx-8 mb-4'>Delever</button>
+                    <button onClick={CountHandel} className=' bg-fuchsia-800 text-white rounded px-3 py-1 mx-8 mb-4'>Delivered</button>
                 </div>
             </div>
 

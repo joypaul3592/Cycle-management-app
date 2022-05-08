@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/Firebase.init';
 
 const SocialLogin = () => {
     const naviget = useNavigate()
+    const location = useLocation()
 
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, Gituser, Gitloading, Giterror] = useSignInWithGithub(auth);
 
-
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         if (error || Giterror) {
@@ -23,7 +24,7 @@ const SocialLogin = () => {
 
     useEffect(() => {
         if (user || Gituser) {
-            naviget('/')
+            naviget(from, { replace: true });
             toast.success('Social login Successful!!')
         }
     }, [user, Gituser])

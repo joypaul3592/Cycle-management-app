@@ -30,26 +30,26 @@ function Contact() {
 
 
     return (
-        <div >
+        <div className=" max-w-7xl mx-auto px-5 relative">
             <div className="w-full flex items-center justify-center my-12 ">
-                <div className=" bg-white shadow-lg rounded py-12 lg:px-28 px-8">
+                <div className=" w-full bg-white backdrop-blur-lg bg-opacity-20 shadow-lg rounded py-12 lg:px-28 px-8">
                     <p className="md:text-3xl text-xl font-bold leading-7 text-center text-gray-700">Cntact Us!</p>
                     <div className="md:flex items-center mt-12">
-                        <div className="md:w-72 flex flex-col">
+                        <div className="md:w-1/2 flex flex-col ">
                             <label className="text-base font-semibold leading-none text-gray-800">Name</label>
                             <input onChange={(e) => setName(e.target.value)} tabIndex={0} arial-label="Please input name" type="name" className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100" placeholder="Please input  name" required />
                         </div>
-                        <div className="md:w-72 flex flex-col md:ml-6 md:mt-0 mt-4">
+                        <div className="md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
                             <label className="text-base font-semibold leading-none text-gray-800">Email Address</label>
                             <input onChange={(e) => setEmail(e.target.value)} tabIndex={0} arial-label="Please input email address" type="name" className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100" placeholder="Please input email address" required />
                         </div>
                     </div>
-                    <div className="md:flex items-center mt-8">
-                        <div className="md:w-72 flex flex-col">
+                    <div className="md:flex items-center mt-8 w-full">
+                        <div className="md:w-1/2 flex flex-col">
                             <label className="text-base font-semibold leading-none text-gray-800">Company name</label>
                             <input onChange={(e) => setCompanyName(e.target.value)} tabIndex={0} role="input" arial-label="Please input company name" type="name" className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100 " placeholder="Please input company name" required />
                         </div>
-                        <div className="md:w-72 flex flex-col md:ml-6 md:mt-0 mt-4">
+                        <div className="md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
                             <label className="text-base font-semibold leading-none text-gray-800">Country</label>
                             <input onChange={(e) => setCountry(e.target.value)} tabIndex={0} arial-label="Please input country name" type="name" className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100" placeholder="Please input country name" required />
                         </div>
@@ -66,6 +66,8 @@ function Contact() {
                     </div>
                 </div>
             </div>
+            <div className="circle h-[400px] w-[400px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-8 bottom-0 md:animate-bounce -z-10"></div>
+            <div className="circle h-[400px] w-[400px] rounded-full bg-gradient-to-r from-blue-300  to-green-200 ... absolute left-8 bottom-20 md:animate-bounce -z-10"></div>
         </div>
     );
 }

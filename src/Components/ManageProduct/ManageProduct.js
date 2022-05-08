@@ -27,25 +27,6 @@ const ManageProduct = () => {
 
 
 
-    const deleteItems = (id, name) => {
-        const deleteItems = window.confirm(`Want To Delete ${name} ?`)
-        if (deleteItems) {
-            fetch(`http://localhost:5000/product/${id}`, {
-                method: 'DELETE',
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data) {
-                        setDeletes(true)
-                        toast.success(`Successfully Delete ${name}`)
-                    }
-                })
-        }
-        else {
-            return toast.error('Cancle By User')
-        }
-
-    }
 
 
 
@@ -64,13 +45,13 @@ const ManageProduct = () => {
                                     Name
                                 </div>
                                 <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
+                                    price
+                                </div>
+                                <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
                                     Quantity
                                 </div>
                                 <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
-                                    Edit
-                                </div>
-                                <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
-                                    Delete
+                                    Add Item
                                 </div>
                             </div>
                         </div>
@@ -78,21 +59,20 @@ const ManageProduct = () => {
                             {
                                 products.map(product =>
                                     <div key={product._id} >
-                                        <div className="relative bg-orange-300">
-                                            <div className=" bg-opacity-90 backdrop-blur-lg shadow-lg block md:flex md:justify-between items-center mb-8 mx-5 px-8 py-2 rounded-lg w-1/2 md:w-full justify-end text-right ">
+                                        <div className="md:relative md:block flex justify-center md:mr-12 md:ml-12  lg:mr-5 lg:ml-5 ml-24 ">
+                                            <div className=" p-3 md:p-0 bg-opacity-90 backdrop-blur-lg shadow-lg block md:flex md:justify-between items-center mb-8 md:mx-5 md:px-8 px-3 lg:mx-0  py-2 rounded-lg  w-full justify-end text-right mx-16 ">
                                                 <div>
                                                     <img className='w-20' src={product.image} alt="" />
                                                 </div>
                                                 <h1 className=" text-xl font-mono ">{product.name}</h1>
-                                                <h1 className="text-xl font-mono ">{product.quentity}</h1>
-                                                <div onClick={() => (naviget(`/addItem`))} className=" cursor-pointer bg-green-800 text-white py-1 px-3 rounded">
+                                                <h1 className="text-xl font-mono ">{product.price}</h1>
+                                                <h1 className="text-xl font-mono ">{product.quantity}</h1>
+                                                <div onClick={() => (naviget(`/addItem`))} className=" text-center my-3 cursor-pointer  bg-fuchsia-800 text-white py-1 md:px-3 px-1 rounded">
                                                     Add New
                                                 </div>
-                                                <div onClick={() => deleteItems(product._id, product.name)} className=" cursor-pointer bg-red-800 text-white py-1 px-3 rounded">
-                                                    Delete
-                                                </div>
+
                                             </div>
-                                            <div className="circle h-[20px] w-[95%] mx-auto rounded-full bg-gradient-to-r from-green-200 to-blue-200 ... absolute right-8 bottom-4 md:animate-bounce -z-10"></div>
+                                            <div className="circle md:h-[40px] md:w-[95%] mx-auto rounded-full md:bg-gradient-to-r md:from-green-200 to-blue-200 ... md:absolute lg:right-6 bottom-4 right-0 md:animate-bounce -z-10"></div>
                                         </div>
                                     </div>)
                             }
@@ -107,27 +87,3 @@ const ManageProduct = () => {
 
 export default ManageProduct;
 
-{/* <div className="bg-slate-300 ">
-                            {
-                                products.map(product => <tr key={product._id} className="text-center bg-orange-500  ">
-                                    <td className="hidden  md:block px-6 py-4 text-sm text-gray-500">
-                                        {product._id}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {product.name}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <img className='w-20' src={product.image} alt="" />
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">
-                                        {product.quentity}
-                                    </td>
-                                    <td className="px-6 py-4 hidden md:block">
-                                        Edit
-                                    </td>
-                                    <td onClick={() => deleteItems(product._id)} className="px-6 py-4 cursor-pointer">
-                                        Delete
-                                    </td>
-                                </tr>)
-                            }
-                        </div> */}

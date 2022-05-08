@@ -80,13 +80,6 @@ const Login = () => {
     // requirAuth
     const from = location.state?.from?.pathname || "/";
 
-
-    // User successfully sign up
-    // if (user) {
-    //     naviget(from, { replace: true });
-    //     // toast.success("Wow Sign Up Successfully!")
-    // }
-
     useEffect(() => {
         if (user) {
             naviget(from, { replace: true });

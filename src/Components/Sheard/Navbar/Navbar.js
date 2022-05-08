@@ -75,7 +75,7 @@ const Navbar = () => {
                                         <NavLink
                                             to={'addItem'}
                                             className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}
-                                        >Add Items</NavLink>
+                                        >Add Item</NavLink>
                                         <NavLink
                                             to={'myItem'}
                                             className={({ isActive }) => (`px-3 py-2 rounded-md text-xl font-medium ${isActive ? 'text-purple-500' : 'text-black'}`)}

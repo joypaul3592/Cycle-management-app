@@ -8,7 +8,8 @@ import cycle2 from '../../img/cycle3.png'
 const NewCycle = () => {
     return (
         <div>
-            <h1 className='text-5xl font-mono text-fuchsia-800'>Upcomming Cycle !</h1>
+            <h1 className='lg:text-5xl md:text-4xl text-2xl font-mono text-fuchsia-800'>Upcomming Cycle</h1>
+            <hr className=' border-fuchsia-800 w-1/2 mx-auto mt-5' />
             <div className=' max-w-7xl  mx-auto grid lg:grid-cols-2 grid-cols-1 gap-8 '>
 
                 <main class="w-full mx-auto my-16 relative px-3">
@@ -31,9 +32,6 @@ const NewCycle = () => {
                             </div>
                         </div>
                     </section>
-                    <div className="circle h-[200px] w-[200px] md:bg-none rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute left-10 bottom-12 md:animate-pulse -z-10"></div>
-
-                    <div className="circle h-[200px] w-[200px] md:bg-none  rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-20 bottom-12 md:animate-pulse delay-1000 -z-10"></div>
                 </main>
 
                 <main class="w-full mx-auto my-16 relative px-3">
@@ -56,9 +54,6 @@ const NewCycle = () => {
                             </div>
                         </div>
                     </section>
-                    <div className="circle h-[200px] w-[200px] md:bg-none rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute left-10 bottom-12 md:animate-pulse -z-10"></div>
-
-                    <div className="circle h-[200px] w-[200px] md:bg-none rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-20 bottom-12 md:animate-pulse delay-1000 -z-10"></div>
                 </main>
 
             </div>

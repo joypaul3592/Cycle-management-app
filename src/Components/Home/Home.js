@@ -8,7 +8,7 @@ import Footer from '../Sheard/Footer/Footer';
 const Home = () => {
     return (
         <div>
-            <div className='relative bg-slate-300 lg:h-[85vh] md:h-[93vh] h-[85vh] overflow-hidden'>
+            <div className='relative  lg:h-[85vh] md:h-[93vh] h-[85vh] overflow-hidden'>
                 {/* bubble design */}
                 <div className="circle h-[600px] w-[600px] rounded-full bg-gradient-to-r from-fuchsia-500 to-green-500 ... absolute left-0 top-0 "></div>
 
@@ -21,7 +21,7 @@ const Home = () => {
 
 
                 {/* Bannar section */}
-                <div className="w-full h-[80vh] md:h-full mx-auto bg-gradient-to-br from-white absolute left-0 top-0 to-transparent bg-opacity-20 bg-white  text-2xl text-black backdrop-blur-lg ">
+                <div className="w-full h-[80vh] md:h-full mx-auto  absolute left-0 top-0 to-transparent bg-opacity-60 bg-white  text-2xl text-black backdrop-blur-lg ">
                     <div className="container p-5 mt-20 max-w-7xl mx-auto block lg:flex items-center justify-between">
                         <div className="text-xontainer">
                             <h1 className='text-4xl md:text-6xl font-serif font-semibold text-fuchsia-900  leading-12   md:mx-36 lg:mx-0'>"We have the best platform to manage a store"</h1>

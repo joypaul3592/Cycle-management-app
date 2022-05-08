@@ -288,12 +288,14 @@ import React, { useEffect, useState } from 'react';
 // import Title from '../../shared/Title/Title';
 import { EyeIcon, EyeOffIcon, XIcon } from '@heroicons/react/outline'
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/Firebase.init';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
+    const location = useLocation()
+    const naviget = useNavigate()
     const [password, setPassword] = useState(false)
 
     const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
@@ -331,6 +333,7 @@ const SignUp = () => {
     }
 
 
+    const from = location.state?.from?.pathname || "/";
 
 
     // handel submit 
@@ -350,7 +353,7 @@ const SignUp = () => {
     }
     useEffect(() => {
         if (user) {
-            navigate('/')
+            naviget(from, { replace: true });
             toast.success('SignUp Successful!!')
         }
     }, [user])

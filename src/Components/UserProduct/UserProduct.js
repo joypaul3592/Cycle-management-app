@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 // import { useNavigate } from 'react-router-dom';
 
 const UserProduct = ({ pd }) => {
     // const Navigate = useNavigate();
+    const [deletes, setDeletes] = useState(false)
+    // const [products, setProducts] = useState([]);
 
+
+
+    useEffect(() => {
+        console.log('kaj hocce');
+    }, [deletes])
+
+
+    const deleteItems = (id, name) => {
+        const deleteItems = window.confirm(`Want To Delete ${name} ?`)
+        if (deleteItems) {
+
+
+            fetch(`http://localhost:5000/product/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data) {
+                        setDeletes(true)
+                        toast.success(`Successfully Delete ${name}`)
+                    }
+                })
+        }
+        else {
+            return toast.error('Cancle By User')
+        }
+
+    }
 
     return (
         <div className=' border-2 w-[330px] mx-auto p-5  text-white font-medium  rounded-2xl shadow-xl'>
@@ -17,7 +48,9 @@ const UserProduct = ({ pd }) => {
             <p className='mt-4 text-gray-700 text-left'>Supplyer Names : {pd.SPName}</p>
             <p className=' text-gray-700 text-left'>Description : {pd.details}</p>
             <div className='text-center py-1'>
-                {/* <button className={`${children ? 'bg-[#FF0066] text-white rounded px-3 py-1' : ''}`}>{children}</button> */}
+                <div onClick={() => deleteItems(pd._id, pd.name)} className="  text-center my-3 cursor-pointer bg-pink-800 text-white py-1 px-3 rounded">
+                    Delete
+                </div>
             </div>
         </div>
     );
