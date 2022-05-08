@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon, FlagIcon, XIcon } from '@heroicons/react/outline'
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../Firebase/Firebase.init';
@@ -15,7 +15,7 @@ const Login = () => {
 
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
-
+    const [mainUser] = useAuthState(auth)
 
     const location = useLocation()
     const naviget = useNavigate();
@@ -88,6 +88,34 @@ const Login = () => {
     }, [user])
 
 
+
+
+    if (mainUser) {
+        // 
+        toast.success("Login Successful!!")
+        const url = `http://localhost:5000/login`;
+        const email = mainUser.email;
+        console.log(email);
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: mainUser.email
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem('accessToken', data.token)
+                naviget(from, { replace: true });
+                console.log(data.token)
+            });
+
+    }
+
+
+
     // User sign up error
     useEffect(() => {
         if (error?.code) {
@@ -155,8 +183,8 @@ const Login = () => {
                         <SocialLogin></SocialLogin>
                         {/* <ToastContainer /> */}
                     </div>
-                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
-                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
+                    <div className="circle md:h-[500px] md:w-[500px] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
+                    <div className="circle md:h-[500px] md:w-[500px] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
                 </div>
             </div>
         </div>

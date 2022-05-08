@@ -66,8 +66,8 @@ function Contact() {
                     </div>
                 </div>
             </div>
-            <div className="circle h-[400px] w-[400px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-8 bottom-0 md:animate-bounce -z-10"></div>
-            <div className="circle h-[400px] w-[400px] rounded-full bg-gradient-to-r from-blue-300  to-green-200 ... absolute left-8 bottom-20 md:animate-bounce -z-10"></div>
+            <div className="circle lg:h-[400px] lg:w-[400px] md:h-[200px] md:w-[200px] h-[100px] w-[100px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-8 bottom-0 md:animate-bounce -z-10"></div>
+            <div className="circle lg:h-[400px] lg:w-[400px] md:h-[200px] md:w-[200px] h-[100px] w-[100px] rounded-full bg-gradient-to-r from-blue-300  to-green-200 ... absolute left-8 bottom-20 md:animate-bounce -z-10"></div>
         </div>
     );
 }

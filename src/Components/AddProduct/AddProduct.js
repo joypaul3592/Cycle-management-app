@@ -8,15 +8,22 @@ import auth from "../Firebase/Firebase.init";
 const AddProduct = () => {
     const [user] = useAuthState(auth);
     const handleSubmit = async (e) => {
+
+        const token = localStorage.getItem('accessToken')
+        console.log(token)
         e.preventDefault();
+
         const product = {
             name: e.target.name.value,
             price: e.target.price.value,
             image: e.target.image.value,
-            email: user.email,
             quantity: e.target.pdQuantity.value,
             SPName: e.target.spName.value,
-            details: e.target.pdDetails.value
+            details: e.target.pdDetails.value,
+            token: token,
+            email: user.email
+
+
         };
         console.log(product);
         try {
@@ -34,9 +41,9 @@ const AddProduct = () => {
 
     };
     return (
-        <div className="py-32 px-10 min-h-screen w-full ">
+        <div className="py-32 md:px-10 px-3 min-h-screen w-full ">
             <div className="w-full lg:w-1/2 md:w-3/4 mx-auto rounded-lg relative">
-                <div className="  p-10 w-full  bg-opacity-90 backdrop-blur-lg shadow-lg ">
+                <div className="  md:p-10 p-3  w-full  bg-opacity-90 backdrop-blur-lg shadow-lg ">
                     <form onSubmit={handleSubmit}>
                         <div className="flex items-center mb-10">
                             <label className="inline-block w-40 mr-6 text-right font-bold text-fuchsia-700">

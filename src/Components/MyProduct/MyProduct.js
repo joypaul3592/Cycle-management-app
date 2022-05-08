@@ -11,6 +11,8 @@ const MyProduct = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
 
+
+
         const getProducts = async () => {
             const email = user.email;
             const url = `http://localhost:5000/product?email=${email}`

@@ -32,7 +32,10 @@ const ManagmentInventory = () => {
 
 
     const handelvalue = (e) => {
-        const value = e.target.value
+        const value = e.target.value;
+        if (value == '') {
+            return toast.error('You Dont Add Any Quantity')
+        }
         setQuantity(value)
     }
 
@@ -81,8 +84,8 @@ const ManagmentInventory = () => {
                 </div>
             </div>
 
-            <div className='w-[400px] mx-auto my-20'>
-                <Link to='/manageItem' className='  flex justify-center mt-2 items-center px-8 py-1 rounded-xl shadow-lg bg-fuchsia-800 text-white  font-semibold font-mono'>
+            <div className='md:w-[400px] w-1/2 mx-auto my-20 text-center'>
+                <Link to='/manageItem' className=' text-center  flex justify-center mt-2 items-center md:px-8 px-2 py-1 rounded-xl shadow-lg bg-fuchsia-800 text-white  font-semibold font-mono'>
                     <span className='text-xl  mr-3'>Manages Items</span>
 
                 </Link>
