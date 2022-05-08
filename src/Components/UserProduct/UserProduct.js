@@ -5,8 +5,6 @@ import { toast } from 'react-toastify';
 const UserProduct = ({ pd }) => {
     // const Navigate = useNavigate();
     const [deletes, setDeletes] = useState(false)
-    // const [products, setProducts] = useState([]);
-
 
 
     useEffect(() => {
@@ -19,7 +17,7 @@ const UserProduct = ({ pd }) => {
         if (deleteItems) {
 
 
-            fetch(`https://secure-depths-99773.herokuapp.com/product/${id}`, {
+            fetch(`http://localhost:5000/product/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

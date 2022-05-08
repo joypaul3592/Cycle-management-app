@@ -11,6 +11,7 @@ import Blog from './Components/Blog/Blog';
 import RequireAuth from './Components/UserLogin/RequireAuth/RequireAuth';
 import ManagmentInventory from './Components/ManagmentInventory/ManagmentInventory';
 import ErrorPage from './Components/ErrorPage/ErrorPage';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -27,8 +28,12 @@ function App() {
         <Route path="/blog" element={<Blog></Blog>} />
         <Route path="*" element={<ErrorPage></ErrorPage>} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
 
 export default App;
+
+
+// http://localhost:5000/

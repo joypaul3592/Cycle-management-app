@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../Firebase/Firebase.init';
 import UserProduct from '../UserProduct/UserProduct';
@@ -9,23 +8,33 @@ import UserProduct from '../UserProduct/UserProduct';
 const MyProduct = () => {
     const [user] = useAuthState(auth);
     const [products, setProducts] = useState([]);
+
+
+
     useEffect(() => {
-
-
-
         const getProducts = async () => {
             const email = user.email;
-            const url = `https://secure-depths-99773.herokuapp.com/product?email=${email}`
-            const { data } = await axios.get(url);
-            if (!data?.success) {
-                toast.error(data.error);
-                return
-            }
-            setProducts(data.data)
+
+            const url = `http://localhost:5000/product?email=${email}`
+
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    if (!data?.success) {
+                        toast.error(data.error);
+                        return
+                    }
+                    setProducts(data.data)
+                });
+
         }
         getProducts()
 
-    }, [user, products])
+    }, [products])
+
+
+    console.log(products)
+
 
 
     return (

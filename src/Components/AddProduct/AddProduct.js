@@ -22,16 +22,16 @@ const AddProduct = () => {
             details: e.target.pdDetails.value,
             token: token,
             email: user.email
-
-
         };
         console.log(product);
         try {
-            const { data } = await axios.post(`https://secure-depths-99773.herokuapp.com/product`, product)
+            const { data } = await axios.post(`http://localhost:5000/product`, product)
 
             if (!data.success) {
                 return toast.error(data.error)
             }
+            // toast.success(`SuccesFully Added`)
+            console.log(data)
             toast.success(data.message)
             e.target.reset()
         } catch (error) {

@@ -18,7 +18,7 @@ const Products = () => {
                         <div>
                             <main key={product._id} class="w-full mx-auto my-16 relative px-3">
                                 <section class="flex flex-col md:flex-row gap-10 py-10 px-4 mx-auto lg:mx-0  rounded-md shadow-lg w-full md:max-w-2xl bg-white bg-opacity-60 backdrop-blur-md">
-                                    <div class="text-indigo-800 w-full md:w-[50%]flex flex-col justify-between">
+                                    <div class="text-indigo-800 w-full md:w-[50%] flex flex-col justify-between">
                                         <img className='w-[300px] h-[200px] ' src={product.image} alt="" />
                                     </div>
                                     <div class="text-indigo-500 w-full md:w-[50%]">

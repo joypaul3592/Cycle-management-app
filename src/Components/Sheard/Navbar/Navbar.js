@@ -4,7 +4,7 @@ import { signOut } from 'firebase/auth';
 import { Fragment, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import logo from '../../../img/logo.png'
 import auth from '../../Firebase/Firebase.init'
 
@@ -17,12 +17,7 @@ const Navbar = () => {
     const location = useLocation()
 
     const [user] = useAuthState(auth)
-    const [userUrl, setUserUrl] = useState('')
-    useEffect(() => {
-        if (user) {
 
-        }
-    }, [user, userUrl])
 
     const userSignOut = () => {
         signOut(auth)
@@ -195,7 +190,6 @@ const Navbar = () => {
                             </div>
                         </div>
                     </Disclosure.Panel>
-
                 </>
             )
             }

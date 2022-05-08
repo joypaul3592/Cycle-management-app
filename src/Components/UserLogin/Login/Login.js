@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon, FlagIcon, XIcon } from '@heroicons/react/outline'
-import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../Firebase/Firebase.init';
@@ -11,12 +11,10 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
 
-    const [signInWithGoogle, goolgeUser, googleLoading, googlEerror] = useSignInWithGoogle(auth);
-    const [signInWithGithub, Gituser, Gitloading, Giterror] = useSignInWithGithub(auth);
 
-    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, loguser, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
-    const [mainUser] = useAuthState(auth)
+    const [user] = useAuthState(auth)
 
     const location = useLocation()
     const naviget = useNavigate();
@@ -83,38 +81,34 @@ const Login = () => {
 
     useEffect(() => {
         if (user) {
-            naviget(from, { replace: true });
-            toast.success("Login Successful!!")
+            const url = `http://localhost:5000/login`;
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: user.email
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    localStorage.setItem('accessToken', data.token)
+                    naviget(from, { replace: true });
+                    console.log(data.token)
+                });
         }
     }, [user])
 
 
 
 
-    if (mainUser) {
-        // 
-        toast.success("Login Successful!!")
-        const url = `https://secure-depths-99773.herokuapp.com/login`;
-        const email = mainUser.email;
-        console.log(email);
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({
-                email: mainUser.email
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                localStorage.setItem('accessToken', data.token)
-                naviget(from, { replace: true });
-                console.log(data.token)
-            });
-
-    }
-
+    // succesfull 
+    useEffect(() => {
+        if (loguser) {
+            toast.success('LogIn Successful')
+        }
+    }, [loguser])
 
 
     // User sign up error
@@ -126,22 +120,6 @@ const Login = () => {
 
     // for loading
 
-
-
-    useEffect(() => {
-        if (error || Giterror || googlEerror) {
-            toast("Opps!! User Not Found")
-        }
-    }, [error, Giterror])
-
-
-
-    useEffect(() => {
-        if (user || Gituser || goolgeUser) {
-            naviget(from, { replace: true });
-            toast.success('Social login Successful!!')
-        }
-    }, [user, Gituser])
 
 
 
@@ -166,8 +144,6 @@ const Login = () => {
 
 
 
-
-    console.log(user)
     return (
         <div className="login-container">
             <div className='mb-24 mx-5 '>
@@ -206,23 +182,8 @@ const Login = () => {
                         <p className=' font-mono font-medium'>Create New Account? <span onClick={() => naviget('/signup')} className=' text-fuchsia-800 cursor-pointer font-mono font-bold text-xl'>Register</span></p>
 
                         <p className=' font-mono font-medium'>Forget Password? <span onClick={resetPassword} className=' text-fuchsia-800 cursor-pointer font-mono font-bold text-xl'>Reset Password</span></p>
-                        <div>
-                            <div className="flex items-center justify-between my-4">
-                                <div className="w-[45%] h-[1px] bg-black opacity-20"></div>
-                                <p>or</p>
-                                <div className="w-[45%] h-[1px] bg-black opacity-20"></div>
-                            </div>
-                            <div onClick={() => signInWithGoogle()} className=" cursor-pointer flex items-center justify-center w-11/12 md:w-7/12 mx-auto bg-slate-50 rounded-lg shadow-md mb-5" >
-                                <img className='w-[45px] mr-2' src="https://pngimg.com/uploads/google/google_PNG19635.png" alt="" />
-                                <h3 className=' font-semibold'>Continue With Google</h3>
-                            </div>
-                            <div onClick={() => signInWithGithub()} className=" cursor-pointer flex items-center justify-center w-11/12 md:w-7/12 mx-auto bg-slate-50 rounded-lg shadow-md mb-5"  >
-                                <img className='w-[45px] p-1 mr-2 text-white' src="https://pngimg.com/uploads/github/github_PNG87.png" alt="" />
-                                <h3 className=' font-semibold'>Continue With GitHub</h3>
-                            </div>
-                        </div>
-                        <ToastContainer />
 
+                        <SocialLogin></SocialLogin>
                     </div>
                     <div className="circle md:h-[500px] md:w-[500px] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
                     <div className="circle md:h-[500px] md:w-[500px] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>

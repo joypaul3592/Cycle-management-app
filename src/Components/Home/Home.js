@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import bannarImg from '../../../src/img/cycle2.png'
 import Contact from '../Contact/Contact';
 import NewCycle from '../NewCycle/NewCycle';
