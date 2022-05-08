@@ -25,7 +25,7 @@ const MyProduct = () => {
         }
         getProducts()
 
-    }, [user])
+    }, [user, products])
 
 
     return (
