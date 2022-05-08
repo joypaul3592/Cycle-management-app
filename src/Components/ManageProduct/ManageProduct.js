@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useProduct from '../Sheard/Hook/useProduct';
 
 const ManageProduct = () => {
 
@@ -56,21 +55,21 @@ const ManageProduct = () => {
             <div>
                 <div className=' max-w-7xl mx-auto my-10'>
                     <div className='w-full '>
-                        <div className="bg-gray-800 rounded-lg mx-5">
-                            <div className='flex justify-between py-2 px-8'>
-                                <div className='text-lg font font-mono font-semibold text-white'>
+                        <div className="bg-gray-800 rounded-lg mx-5 md:static fixed left-0 top-[25%]">
+                            <div className='block md:flex justify-between py-2 md:px-8 px-4'>
+                                <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
                                     Image
                                 </div>
-                                <div className='text-lg font font-mono font-semibold text-white'>
+                                <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
                                     Name
                                 </div>
-                                <div className='text-lg font font-mono font-semibold text-white'>
+                                <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
                                     Quantity
                                 </div>
-                                <div className='text-lg font font-mono font-semibold text-white'>
+                                <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
                                     Edit
                                 </div>
-                                <div className='text-lg font font-mono font-semibold text-white'>
+                                <div className='text-lg font font-mono font-semibold text-white my-8 md:my-0'>
                                     Delete
                                 </div>
                             </div>
@@ -79,8 +78,8 @@ const ManageProduct = () => {
                             {
                                 products.map(product =>
                                     <div key={product._id} >
-                                        <div className="relative ">
-                                            <div className=" bg-opacity-90 backdrop-blur-lg shadow-lg flex justify-between items-center mb-8 mx-5 px-8 py-2 rounded-lg  ">
+                                        <div className="relative bg-orange-300">
+                                            <div className=" bg-opacity-90 backdrop-blur-lg shadow-lg block md:flex md:justify-between items-center mb-8 mx-5 px-8 py-2 rounded-lg w-1/2 md:w-full justify-end text-right ">
                                                 <div>
                                                     <img className='w-20' src={product.image} alt="" />
                                                 </div>

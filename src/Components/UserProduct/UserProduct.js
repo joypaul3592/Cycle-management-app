@@ -1,8 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const UserProduct = ({ pd }) => {
-    const Navigate = useNavigate();
+    // const Navigate = useNavigate();
 
 
     return (
@@ -12,7 +12,7 @@ const UserProduct = ({ pd }) => {
             <hr className='my-2 border-fuchsia-700' />
             <div className="flex justify-between">
                 <p className='py-1 text-gray-700 text-left'>Price: <span className=" text-fuchsia-800 font  font-semibold text-lg">${pd.price}</span> </p>
-                <p className='py-1 text-gray-700 text-left'>Quantity : <span className=" text-fuchsia-800 font  font-semibold text-lg">${pd.quentity}</span></p>
+                <p className='py-1 text-gray-700 text-left'>quantity : <span className=" text-fuchsia-800 font  font-semibold text-lg">${pd.quantity}</span></p>
             </div>
             <p className='mt-4 text-gray-700 text-left'>Supplyer Names : {pd.SPName}</p>
             <p className=' text-gray-700 text-left'>Description : {pd.details}</p>

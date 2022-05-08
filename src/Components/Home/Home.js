@@ -1,6 +1,9 @@
 import React from 'react';
 import bannarImg from '../../../src/img/cycle2.png'
+import Contact from '../Contact/Contact';
+import NewCycle from '../NewCycle/NewCycle';
 import Products from '../Products/Products';
+import Footer from '../Sheard/Footer/Footer';
 
 const Home = () => {
     return (
@@ -31,6 +34,9 @@ const Home = () => {
             </div>
 
             <Products></Products>
+            <NewCycle></NewCycle>
+            <Contact></Contact>
+            <Footer></Footer>
         </div>
 
 

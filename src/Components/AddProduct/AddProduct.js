@@ -14,7 +14,7 @@ const AddProduct = () => {
             price: e.target.price.value,
             image: e.target.image.value,
             email: user.email,
-            quentity: e.target.pdQuentity.value,
+            quantity: e.target.pdQuantity.value,
             SPName: e.target.spName.value,
             details: e.target.pdDetails.value
         };
@@ -90,11 +90,11 @@ const AddProduct = () => {
 
                         <div className="flex items-center mb-10">
                             <label className="inline-block w-40 mr-6 text-right font-bold text-fuchsia-700 ">
-                                Quentity :
+                                Quantity :
                             </label>
                             <input
                                 type="text"
-                                name="pdQuentity"
+                                name="pdQuantity"
                                 placeholder="Product Quentity"
                                 className="flex-1 py-2 border-b-2 
                                 bg-transparent border-green-600 focus:border-fuchsia-700 
