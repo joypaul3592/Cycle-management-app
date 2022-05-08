@@ -6,7 +6,7 @@
 
 ## `Available Live Site Link :`
 
-### [link](https://dapper-rolypoly-d479bb.netlify.app)
+### [https://cycle-inventory.web.app/](https://cycle-inventory.web.app/)
 
 ## `DocTreat Website Features :`
 

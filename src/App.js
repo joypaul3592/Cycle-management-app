@@ -37,3 +37,7 @@ export default App;
 
 
 // https://secure-depths-99773.herokuapp.com/
+
+// quenstioon link
+
+// https://stackoverflow.com/questions/72164626/unable-to-login-with-social-oauth-when-deployed-to-heroku

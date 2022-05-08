@@ -1,30 +1,32 @@
 import React, { useEffect } from 'react';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/Firebase.init';
+import Loading from '../../Sheard/Loading/Loading';
 
 const SocialLogin = () => {
-    const naviget = useNavigate()
+    const navigate = useNavigate()
     const location = useLocation()
 
-    const [signInWithGoogle, googleUser, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithGithub, Gituser, Gitloading, Giterror] = useSignInWithGithub(auth);
 
     const from = location.state?.from?.pathname || "/";
 
+    // Error
     useEffect(() => {
-        if (error || Giterror) {
+        if (googleError || Giterror) {
             toast("Opps!! User Not Found")
         }
-    }, [error, Giterror])
+    }, [googleError, Giterror])
 
 
-
+    // naviate
     useEffect(() => {
         if (googleUser || Gituser) {
-            naviget(from, { replace: true });
+            navigate(from, { replace: true });
             toast.success('Social login Successful!!')
         }
     }, [googleUser, Gituser])
