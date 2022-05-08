@@ -14,7 +14,7 @@ const ManageProduct = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const { data } = await axios.get('http://localhost:5000/product');
+            const { data } = await axios.get('https://secure-depths-99773.herokuapp.com/product');
             if (!data?.success) return toast.error(data.error)
             setProducts(data?.data);
         }

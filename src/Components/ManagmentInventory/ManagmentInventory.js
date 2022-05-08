@@ -11,7 +11,7 @@ const ManagmentInventory = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const { data } = await axios.get(`http://localhost:5000/product/${id}`);
+            const { data } = await axios.get(`https://secure-depths-99773.herokuapp.com/${id}`);
             setProduct(data?.data[0]);
         }
         fetchData()
@@ -45,7 +45,7 @@ const ManagmentInventory = () => {
 
         // console.log(quantity);
 
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://secure-depths-99773.herokuapp.com/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
