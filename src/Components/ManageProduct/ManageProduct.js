@@ -70,9 +70,7 @@ const ManageProduct = () => {
                                                 <div onClick={() => (naviget(`/addItem`))} className=" text-center my-3 cursor-pointer  bg-fuchsia-800 text-white py-1 md:px-3 px-1 rounded">
                                                     Add New
                                                 </div>
-
                                             </div>
-                                            <div className="circle md:h-[40px] md:w-[95%] mx-auto rounded-full md:bg-gradient-to-r md:from-green-200 to-blue-200 ... md:absolute lg:right-6 bottom-4 right-0 md:animate-bounce -z-10"></div>
                                         </div>
                                     </div>)
                             }
