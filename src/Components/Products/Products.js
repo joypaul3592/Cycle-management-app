@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import useProduct from '../Sheard/Hook/useProduct';
+import Loading from '../Sheard/Loading/Loading';
 
 
 const Products = () => {
