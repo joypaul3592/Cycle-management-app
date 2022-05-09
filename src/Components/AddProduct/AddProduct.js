@@ -42,6 +42,8 @@ const AddProduct = () => {
     };
     return (
         <div className="py-32 md:px-10 px-3 min-h-screen w-full ">
+            <h1 className='text-center text-4xl font-mono text-fuchsia-800 font-bold '>Add Your Product</h1>
+            <hr className=' border-fuchsia-800 mb-20 mt-3 w-1/2 mx-auto' />
             <div className="w-full lg:w-1/2 md:w-3/4 mx-auto rounded-lg relative">
                 <div className="  md:p-10 p-3  w-full  bg-opacity-90 backdrop-blur-lg shadow-lg ">
                     <form onSubmit={handleSubmit}>
