@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import useProduct from '../Sheard/Hook/useProduct';
 import Loading from '../Sheard/Loading/Loading';
@@ -7,14 +7,17 @@ import Loading from '../Sheard/Loading/Loading';
 const Products = () => {
 
 
-    const [products, setProducts] = useProduct()
+    const [products, setProducts] = useProduct();
     const navigate = useNavigate();
 
 
+    useEffect(() => {
+        if (!products) {
+            return <Loading></Loading>
+        }
 
-    if (!products) {
-        return <Loading></Loading>
-    }
+    }, [products])
+
 
 
 
@@ -25,8 +28,8 @@ const Products = () => {
                 {
                     products.slice(0, 6).map(product =>
 
-                        <div>
-                            <main key={product._id} class="w-full mx-auto my-16 relative px-3">
+                        <div key={product._id}>
+                            <main class="w-full mx-auto my-16 relative px-3">
                                 <section class="flex flex-col md:flex-row gap-10 py-10 px-4 mx-auto lg:mx-0  rounded-md shadow-lg w-full md:max-w-2xl bg-white bg-opacity-60 backdrop-blur-md">
                                     <div class="text-indigo-800 w-full md:w-[50%] flex flex-col justify-between">
                                         <img className='w-[300px] h-[200px] ' src={product.image} alt="" />

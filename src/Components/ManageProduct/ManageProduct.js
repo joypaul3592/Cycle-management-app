@@ -8,8 +8,10 @@ const ManageProduct = () => {
 
 
     const naviget = useNavigate()
-    const [deletes, setDeletes] = useState(false)
     const [products, setProducts] = useState([]);
+
+
+
 
 
     useEffect(() => {
@@ -20,8 +22,8 @@ const ManageProduct = () => {
             setProducts(data?.data);
         }
         fetchData()
+    }, [products])
 
-    }, [products, deletes])
 
 
 
@@ -29,9 +31,6 @@ const ManageProduct = () => {
     if (!products) {
         return <Loading></Loading>
     }
-
-
-
 
 
     return (

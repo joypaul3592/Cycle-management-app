@@ -33,7 +33,6 @@ const Home = () => {
                 </div>
                 {/* Bannar section */}
             </div>
-
             <Products></Products>
             <NewCycle></NewCycle>
             <Contact></Contact>

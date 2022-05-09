@@ -80,7 +80,7 @@ const ManagmentInventory = () => {
 
                 <div className='flex justify-between items-center mb-4 px-5'>
                     <p>Price: <span className=" text-fuchsia-800 font  font-semibold text-lg">${product.price}</span></p>
-                    <p>quantity: <span className=" text-fuchsia-800 font  font-semibold text-lg">{prevQuantity}</span> </p>
+                    <p>Quantity: <span className=" text-fuchsia-800 font  font-semibold text-lg">{prevQuantity}</span> </p>
                 </div>
                 <p className='mt-4 text-lg text-gray-700 text-left'>Supplyer Names : {product.SPName}</p>
                 <p className=' text-gray-700 text-lg text-left'>Description : {product.details}</p>
