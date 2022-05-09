@@ -8,6 +8,15 @@ const Products = () => {
 
     const [products, setProducts] = useProduct()
     const navigate = useNavigate();
+
+
+
+    if (!products) {
+        return <Loading></Loading>
+    }
+
+
+
     return (
         <div className='my-8'>
             <h1 className='text-5xl font-mono text-fuchsia-800'>Inventory</h1>

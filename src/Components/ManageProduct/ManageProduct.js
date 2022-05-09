@@ -25,7 +25,9 @@ const ManageProduct = () => {
 
 
 
-
+    if (!products) {
+        return <Loading></Loading>
+    }
 
 
 
