@@ -95,7 +95,6 @@ const Login = () => {
                 .then((data) => {
                     localStorage.setItem('accessToken', data.token)
                     naviget(from, { replace: true });
-                    console.log(data.token)
                 });
         }
     }, [user])

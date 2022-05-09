@@ -52,7 +52,7 @@ const ManagmentInventory = () => {
 
         const quantity = parseInt(newQuantity) + parseInt(prevQuantity);
 
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://secure-depths-99773.herokuapp.com/product/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
