@@ -73,7 +73,7 @@ const ManagmentInventory = () => {
 
     return (
         <div className='py-20'>
-            <div className='bgStyles border-2 w-[330px] md:w-[400px] mx-auto p-5 text-xl text-black font-medium  rounded-2xl shadow-2xl'>
+            <div className='bgStyles border-2 w-[330px] md:w-[400px] lg:w-[550px] mx-auto p-5 text-xl text-black font-medium  rounded-2xl shadow-2xl'>
                 <img className='w-fit mx-auto rounded-2xl mb-4' src={product.image} alt="" />
                 <p className='text-2xl font-semibold font-mono text-fuchsia-700 mb-1'>{product.name}</p>
                 <hr className=' border-fuchsia-800 w-1/2 mx-auto mb-5' />
