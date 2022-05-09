@@ -8,7 +8,7 @@ import cycle2 from '../../img/cycle3.png'
 const NewCycle = () => {
     return (
         <div>
-            <h1 className='lg:text-5xl md:text-4xl text-2xl font-mono text-fuchsia-800'>Upcomming Cycle</h1>
+            <h1 className='lg:text-5xl md:text-4xl text-2xl font-mono text-fuchsia-800'>upcoming Cycle</h1>
             <hr className=' border-fuchsia-800 w-1/2 mx-auto mt-5' />
             <div className=' max-w-7xl  mx-auto grid lg:grid-cols-2 grid-cols-1 gap-8 '>
 
