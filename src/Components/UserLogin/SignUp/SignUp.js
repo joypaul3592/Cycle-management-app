@@ -143,8 +143,8 @@ const SignUp = () => {
 
                         </form>
                     </div>
-                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
-                    <div className="circle h-[500px] w-[500px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
+                    <div className="circle md:h-[500px] md:w-[500px] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-green-200 to-blue-300 ... absolute right-0 bottom-2  -z-10"></div>
+                    <div className="circle md:h-[500px] md:w-[500px] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-red-200 to-pink-300 ... absolute left-0 top-0  -z-10 opacity-60"></div>
                 </div>
             </div>
 
