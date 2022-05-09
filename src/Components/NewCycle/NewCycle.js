@@ -27,9 +27,6 @@ const NewCycle = () => {
                                 <h1>Quentity : 99</h1>
                                 <h1>Suppliyer Name : Imran Khan</h1>
                             </div>
-                            <div className='mt-5 text-right'>
-                                <button id="addToCartButton" class="bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase px-8 py-2 rounded-sm">Update</button>
-                            </div>
                         </div>
                     </section>
                 </main>
@@ -48,9 +45,6 @@ const NewCycle = () => {
                             <div className='my-3 text-left font-mono text-gray-900 font-semibold'>
                                 <h1>Quentity : 199</h1>
                                 <h1>Suppliyer Name : Arif Khan</h1>
-                            </div>
-                            <div className='mt-5 text-right'>
-                                <button id="addToCartButton" class="bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase px-8 py-2 rounded-sm">Update</button>
                             </div>
                         </div>
                     </section>
