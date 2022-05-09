@@ -28,7 +28,7 @@ const Products = () => {
                                             <small class="text-black ">{product.details}</small>
                                         </div>
                                         <div className='my-3 text-left font-mono text-gray-900 font-semibold'>
-                                            <h1>Quentity : {product.quentity}</h1>
+                                            <h1>Quentity : {product.quantity}</h1>
                                             <h1>Suppliyer Name :{product.SPName}</h1>
                                         </div>
                                         <div className='mt-5 text-right'>
