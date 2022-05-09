@@ -4,10 +4,10 @@ import logo from '../../../img/logo.png'
 const Footer = () => {
 
     return (
-        <div className="pt-12">
-            <footer id="footer" className="relative z-50 bg-fuchsia-100 py-24">
+        <div className="pt-12 ">
+            <footer id="footer" className="relative z-50 bg-gray-200 py-24 ">
 
-                <div className=" flex flex-col justify-center items-center">
+                <div className=" flex flex-col justify-center items-center ">
                     <Link className="flex-shrink-0 flex items-center " to={'/'}>
                         <img
                             className="block h-9 w-auto"
